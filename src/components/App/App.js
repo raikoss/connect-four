@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Board from '../Board';
 import './app.css';
 
@@ -9,17 +9,19 @@ const numberOfPlayers = 2;
 const App = () => {
   const [currentPlayer, setCurrentPlayer] = useState(0);
 
-  const nextPlayer = () => {
-    let newPlayer;
-
-    if (currentPlayer === numberOfPlayers - 1) {
-      newPlayer = 0;
-    } else {
-      newPlayer = currentPlayer + 1;
-    }
-
-    setCurrentPlayer(newPlayer);
-  }
+  const nextPlayer = useCallback(() => {
+    setCurrentPlayer(prevPlayer => {
+      let newPlayer;
+  
+      if (prevPlayer === numberOfPlayers - 1) {
+        newPlayer = 0;
+      } else {
+        newPlayer = prevPlayer + 1;
+      }
+  
+      return newPlayer;
+    })
+  }, []);
 
   return (
     <div className='app'>

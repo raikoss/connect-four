@@ -2,5 +2,5 @@
   border: 1px solid red;
   margin: 2px;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column-reverse; /* reverse the lanes so first elements are on the bottom */
 }
