@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './board.css';
 import Lane from '../Lane';
 
-const Board = ({ xSize, ySize }) => {
+const Board = ({ xSize, ySize, currentPlayer, onPlace }) => {
   const [lanes, setLanes] = useState(() => {
     const lanes = [];
 
@@ -19,20 +19,23 @@ const Board = ({ xSize, ySize }) => {
     return lanes;
   });
 
+  console.log(lanes);
+
   const addPiece = laneIndex => {
     const newLane = lanes[laneIndex].slice();
     const openSpotIndex = newLane.indexOf(null);
-    newLane[openSpotIndex] = { player: 'Player 1' };
+    newLane[openSpotIndex] = currentPlayer;
     const newLanes = lanes.slice();
     newLanes[laneIndex] = newLane;
 
     setLanes(newLanes);
+    onPlace();
   }
 
   return (
     <div className='board'>
       {lanes.map((lane, i) => 
-        <Lane lane={lane} addPiece={() => addPiece(i)} />
+        <Lane key={i} lane={lane} addPiece={() => addPiece(i)} currentPlayer={currentPlayer} />
       )}
     </div>
   )
