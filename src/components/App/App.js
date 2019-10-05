@@ -9,10 +9,13 @@ const numberOfPlayers = 2;
 const App = () => {
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [winner, setWinner] = useState();
+  // let lastPlayer = useRef(currentPlayer);
+  // console.log('Last player', lastPlayer);
+  console.log('Current player', currentPlayer);
 
-  const onPlace = useCallback(wonPlayer => {
-    if (wonPlayer) {
-      setWinner(wonPlayer);
+  const onPlace = useCallback(won => {
+    if (won) {
+      setWinner(currentPlayer + 1);
       return;
     }
 
@@ -38,7 +41,7 @@ const App = () => {
         onPlace={onPlace}
       />
 
-      {winner ? (
+      {winner !== undefined ? (
         <p>Congratulations, Player {winner}!</p>
       ) : (
         <p>Current player: Player {currentPlayer + 1}</p>
