@@ -8,8 +8,14 @@ const numberOfPlayers = 2;
 
 const App = () => {
   const [currentPlayer, setCurrentPlayer] = useState(0);
+  const [winner, setWinner] = useState();
 
-  const nextPlayer = useCallback(() => {
+  const onPlace = useCallback(wonPlayer => {
+    if (wonPlayer) {
+      setWinner(wonPlayer);
+      return;
+    }
+
     setCurrentPlayer(prevPlayer => {
       let newPlayer;
   
@@ -29,10 +35,14 @@ const App = () => {
         xSize={xSize}
         ySize={ySize}
         currentPlayer={currentPlayer}
-        onPlace={nextPlayer}
+        onPlace={onPlace}
       />
 
-      <p>Current player: Player {currentPlayer + 1}</p>
+      {winner ? (
+        <p>Congratulations, Player {winner}!</p>
+      ) : (
+        <p>Current player: Player {currentPlayer + 1}</p>
+      )}
     </div>
   )
 }
