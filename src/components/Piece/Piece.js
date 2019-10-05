@@ -1,9 +1,11 @@
 import React from 'react';
 import './piece.css';
 
-const Piece = () => {
+const Piece = ({ piece }) => {
   return (
-    <div className='piece'></div>  
+    <div className='piece' style={{ backgroundColor: piece ? 'red': '' }}>
+
+    </div>  
   )
 }
 

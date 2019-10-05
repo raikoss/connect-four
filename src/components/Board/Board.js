@@ -19,10 +19,20 @@ const Board = ({ xSize, ySize }) => {
     return lanes;
   });
 
+  const addPiece = laneIndex => {
+    const newLane = lanes[laneIndex].slice();
+    const openSpotIndex = newLane.indexOf(null);
+    newLane[openSpotIndex] = { player: 'Player 1' };
+    const newLanes = lanes.slice();
+    newLanes[laneIndex] = newLane;
+
+    setLanes(newLanes);
+  }
+
   return (
     <div className='board'>
-      {lanes.map(lane => 
-        <Lane lane={lane} />
+      {lanes.map((lane, i) => 
+        <Lane lane={lane} addPiece={() => addPiece(i)} />
       )}
     </div>
   )
