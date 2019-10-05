@@ -1,0 +1,6 @@
+.piece {
+  border: 1px solid green;
+  height: 30px;
+  width: 30px;
+  margin: 1px;
+}
