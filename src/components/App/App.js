@@ -23,7 +23,14 @@ const App = () => {
 
   return (
     <div className='app'>
-      <Board xSize={xSize} ySize={ySize} currentPlayer={currentPlayer} onPlace={nextPlayer} />
+      <Board 
+        xSize={xSize}
+        ySize={ySize}
+        currentPlayer={currentPlayer}
+        onPlace={nextPlayer}
+      />
+
+      <p>Current player: Player {currentPlayer + 1}</p>
     </div>
   )
 }

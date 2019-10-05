@@ -35,7 +35,7 @@ const Board = ({ xSize, ySize, currentPlayer, onPlace }) => {
   return (
     <div className='board'>
       {lanes.map((lane, i) => 
-        <Lane key={i} lane={lane} addPiece={() => addPiece(i)} currentPlayer={currentPlayer} />
+        <Lane key={i} lane={lane} addPiece={() => addPiece(i)} />
       )}
     </div>
   )
