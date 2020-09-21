@@ -13,13 +13,12 @@ const App = () => {
   // console.log('Last player', lastPlayer);
   console.log('Current player', currentPlayer);
 
-  const onPlace = useCallback(won => {
-    if (won) {
-      setWinner(currentPlayer + 1);
-      return;
-    }
-
-    setCurrentPlayer(prevPlayer => {
+  const onPlace = useCallback((won) => {
+    setCurrentPlayer((prevPlayer) => {
+      if (won) {
+        setWinner(prevPlayer + 1);
+        return;
+      }
       let newPlayer;
   
       if (prevPlayer === numberOfPlayers - 1) {
